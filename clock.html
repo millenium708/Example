@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+
+    <style>
+        #hours {
+            color: red;
+        }
+        #minutes {
+            color: #24ff31;
+        }
+        #seconds {
+            color: #2417ff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<input type="button" onclick="clockStart()" value="Start">
+
+<input type="button" onclick="clockStop()" value="Stop">
+
+<div id="clock"></div>
+
+<script>
+    var clock;
+    function clockStart() {
+        clock = setInterval(function() {
+            var clock = document.getElementById("clock");
+            clock.innerHTML = "";
+            var date = new Date();
+            var hour = date.getHours()
+            var hours = document.createElement('b');
+            hours.id = "hours";
+            hours.innerHTML = hour;
+            clock.appendChild(hours);
+
+            var semi = document.createElement('b');
+            semi.innerHTML = ":";
+            clock.appendChild(semi);
+
+            var min = date.getMinutes()
+            var minutes = document.createElement('b');
+            minutes.id = "minutes";
+            minutes.innerHTML = min;
+            clock.appendChild(minutes);
+
+            var semi = document.createElement('b');
+            semi.innerHTML = ":";
+            clock.appendChild(semi);
+
+            var sec = date.getSeconds()
+            var seconds = document.createElement('b');
+            seconds.id = "seconds";
+            if(sec < 10){
+                seconds.innerHTML = "0"+sec;
+            }
+           else{
+                seconds.innerHTML = sec;
+            }
+            clock.appendChild(seconds);
+        }, 1000)
+
+
+
+
+    }
+
+    function clockStop() {
+        clearInterval(clock);
+    }
+</script>
+</body>
+</html>
