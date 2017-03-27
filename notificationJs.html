@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification on JS</title>
+
+    <style>
+        .notification {
+            position: fixed;
+            z-index: 1000;
+            padding: 5px;
+            border: 1px solid black;
+            font: normal 20px Georgia;
+            background: white;
+            text-align: center;
+        }
+
+        .welcome {
+            background: red;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function showNotification(options) {
+            var div = document.createElement('div');
+            div.className = 'notification';
+            if(options.cssText){
+                div.cssText = options.cssText;
+            }
+            div.top = options.top;
+            div.right = options.right;
+            if(options.className){
+                div.classList.add(options.className);
+            }
+            div.innerText = options.html;
+            document.body.prepend(div);
+            setTimeout(function () {
+                document.body.removeChild(div);
+            } , 1500);
+        }
+
+        // тест работоспособности
+        var i = 0;
+        setInterval(function() {
+            showNotification({
+                top: 10,
+                right: 10,
+                html: 'Привет ' + ++i,
+                className: "welcome"
+            });
+        }, 2000);
+    </script>
+</body>
+</html>
